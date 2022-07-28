@@ -9,6 +9,15 @@ const createUser = async (userBody) => {
   return User.create(userBody);
 };
 
+const loginUser = async (userBody) => {
+  if (await User.isPasswordMatch(userBody.email, userBody.password)) {
+    return
+  } else {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Not able to login");
+  }
+};
+
+
 const queryUsers = async (filter, options) => {
   const users = await User.paginate(filter, options);
   return users;
@@ -46,6 +55,7 @@ const deleteUserById = async (userId) => {
 
 module.exports = {
   createUser,
+  loginUser,
   queryUsers,
   getUserById,
   getUserByEmail,

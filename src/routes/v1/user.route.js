@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get('/getAllUsers', userController.getUsers)
 router.post('/createUser', userController.createUser)
+router.post('/loginUser', userController.loginUser)
 router.get('/getOneUser/:id', userController.getUser)
 
 

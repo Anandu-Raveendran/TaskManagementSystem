@@ -10,6 +10,12 @@ const createUser = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(user);
 });
 
+const loginUser = catchAsync(async (req, res) => {
+  console.log("Login----", req.body)
+  const user = await userService.loginUser(req.body);
+  res.status(httpStatus.OK).send(user);
+});
+
 const getUsers = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
@@ -37,6 +43,7 @@ const deleteUser = catchAsync(async (req, res) => {
 
 module.exports = {
   createUser,
+  loginUser,
   getUsers,
   getUser,
   updateUser,
