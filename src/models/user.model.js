@@ -63,8 +63,6 @@ userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
 
 userSchema.statics.isPasswordMatch = async function (email, password) {
   const user = await this.findOne({ email });
-  console.log(user);
-  console.log(password);
   return bcrypt.compare(password, user.password);
 };
 
