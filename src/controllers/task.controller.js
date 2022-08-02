@@ -16,6 +16,14 @@ const getTasks = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const getTasksForProject = catchAsync(async (req, res) => {
+  const result = await taskService.getTasksForProject(req.params.projectId);
+  if (!result) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Tasks not found for project");
+  }
+  res.send(result);
+});
+
 const getTask = catchAsync(async (req, res) => {
   const task = await taskService.getTaskById(req.params.taskId);
   if (!task) {
@@ -37,6 +45,7 @@ const deleteTask = catchAsync(async (req, res) => {
 module.exports = {
   createTask,
   getTasks,
+  getTasksForProject,
   getTask,
   updateTask,
   deleteTask,

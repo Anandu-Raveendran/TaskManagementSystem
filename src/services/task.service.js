@@ -11,6 +11,11 @@ const queryTasks = async (filter, options) => {
   return tasks;
 };
 
+const getTasksForProject = async (projectId) => {
+  return Task.find({ projectId: parseInt(projectId) });
+};
+
+
 const getTaskById = async (id) => {
   return Task.findById(id);
 };
@@ -38,6 +43,7 @@ module.exports = {
   createTask,
   queryTasks,
   getTaskById,
+  getTasksForProject,
   updateTaskById,
   deleteTaskById,
 };
