@@ -11,7 +11,7 @@ const createUser = async (userBody) => {
 
 const loginUser = async (userBody) => {
   if (await User.isPasswordMatch(userBody.email, userBody.password)) {
-    return
+    return User.findOne({ userBody.email });
   } else {
     throw new ApiError(httpStatus.BAD_REQUEST, "Not able to login");
   }

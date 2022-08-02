@@ -4,7 +4,7 @@ const { toJSON, paginate } = require("./plugins");
 const projectSchema = mongoose.Schema(
   {
     id: {
-      type: Number,
+      type: String,
       required: true,
       trim: true,
     },
