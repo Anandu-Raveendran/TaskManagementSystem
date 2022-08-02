@@ -19,7 +19,7 @@ const getTasks = catchAsync(async (req, res) => {
 const getTasksForProject = catchAsync(async (req, res) => {
   const result = await taskService.getTasksForProject(req.params.projectId);
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Tasks not found for project");
+    throw new ApiError(httpStatus.NOT_FOUND, "Tasks not found for projectid " + req.params.projectId);
   }
   res.send(result);
 });
@@ -27,13 +27,18 @@ const getTasksForProject = catchAsync(async (req, res) => {
 const getTask = catchAsync(async (req, res) => {
   const task = await taskService.getTaskById(req.params.taskId);
   if (!task) {
-    throw new ApiError(httpStatus.NOT_FOUND, "Project not found");
+    throw new ApiError(httpStatus.NOT_FOUND, "Task not found for id " + req.params.taskId);
   }
   res.send(project);
 });
 
 const updateTask = catchAsync(async (req, res) => {
+  console.log("Task id for update");
+  console.log(req.params.taskId);
   const task = await taskService.updateTaskById(req.params.taskId, req.body);
+  if (!task) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Task not found for id " + req.params.taskId);
+  }
   res.send(task);
 });
 
