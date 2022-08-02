@@ -12,7 +12,7 @@ const queryTasks = async (filter, options) => {
 };
 
 const getTasksForProject = async (projectId) => {
-  return Task.find({ projectId: parseInt(projectId) });
+  return Task.find({ projectId: projectId });
 };
 
 
