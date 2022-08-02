@@ -33,6 +33,11 @@ const taskSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    hours: {
+      type: Number,
+      required: true,
+      trim: true,
+    },
     endDate: {
       type: Date,
       required: true,
