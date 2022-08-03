@@ -20,7 +20,7 @@ const loginUser = async (userBody) => {
 
 
 const queryUsers = async (filter, options) => {
-  const users = await User.paginate(filter, options);
+  const users = await User.find({ role: "user" });
   return users;
 };
 
